@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Slab:wght@300;400;700&display=swap');
+
+:root{
+    --grey: #cccccc;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--grey);
+    font-family: 'Roboto Slab';
+}
+
+nav{
+    width: 85vw;
+    height: 10vh;
+    margin: auto;
+    
+}
+
+.content-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo img{
+    height: 10vh;
+}
+
+.options{
+    width: 25vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.content{
+    margin: auto;
+    width: 85vw;
+    height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30vw;
+    height: 60vh;
+}
+
+.text{
+    display: flex;
+    height: 45vh;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title{
+    font-size: 3em;
+}
+
+.description{
+    font-size: 2.3em;
+}
+
+.contact-us button{
+    color: #cccccc;
+    background-color: #000;
+
+    border-radius: 5px;
+    border: none;
+
+    font-size: 1.30em;
+    font-weight: bold;
+    font-family: 'Roboto Slab';
+
+    height: 8vh;
+    width: 20vw;
+}
+
+.img-desktop img{
+    height: 70vh;
+}
+
+/*teste*/
+.content-undertaking{
+    width: 85vw;
+    height: 85vh;
+    margin: auto;
+}
+
+.social-media{
+  height: 7%;
+}
+
+.img-house{ 
+  height: 65vh;
+  width: 40vw;
+}
+
+.img-house img{
+  height: 100%;
+  width: 100%;
+
+}
+
