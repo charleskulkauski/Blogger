@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/posts.css">
+  <link rel="shortcut icon" type="imagex/png" href="../assets/logo/tab_bar.png">
+  <title>Incorp.</title>
+</head>
+
+<body>
+  <nav>
+    <div class="content-nav" id="content-nav">
+      <a
+        href="http://localhost:3333/posts.html">
+        <div class="logo">
+          <text>INCORP LTDA.</text>
+        </div>
+      </a>
+      <div class="perfil" onclick="optionsUser()">
+        <div class="container-perfil">
+          <div class="email-icon" onclick="this.classList.add('expand')">
+            <div class="from-perfil">
+              <div class="from-contents-perfil">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="35" height="70">
+                  <path d="M12,12A6,6,0,1,0,6,6,6.006,6.006,0,0,0,12,12ZM12,2A4,4,0,1,1,8,6,4,4,0,0,1,12,2Z" />
+                  <path
+                    d="M12,14a9.01,9.01,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,12,14Z" />
+                </svg>
+
+              </div>
+            </div>
+            <div class="to-perfil">
+              <div class="to-contents-perfil">
+                <div class="top-perfil">
+                  <div class="name-large-perfil" onclick="signOut()">Sair</div>
+                  <div class="x-touch-perfil"
+                    onclick="document.querySelector('.email-icon').classList.remove('expand');event.stopPropagation();">
+                    <div class="x-perfil">
+                      <div class="line1-perfil"></div>
+                      <div class="line2-perfil"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="posts-content" id="post_content">
+    <div class="content" id="content">
+      <div class="input-text" id="input-text">
+        <div class="text">
+          <input type="text" name="title_input" id="title_input" placeholder="Titulo">
+          <textarea cols="30" data-ls-module="charCounter" maxlength="255" rows="5"
+            placeholder="Diga algo interessante..." oninput="countText()" id="text_post_input"></textarea>
+          <small id="countText"></small>
+        </div>
+        <div class="under-text">
+          <div class="category">
+            <button class="comunicated-category" id="comunicated-category"
+              onclick="animationButton('comunicado')" >Comunicado</button>
+            <button onclick="animationButton('empreendimento')" class="undertaking-category"
+              id="undertaking-category">Empreendimento</button>
+
+            <div class="imageDiv" id="imageDiv">
+
+              <div class="icon-image" id="icon-image" onclick="loadImage()">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24"
+                  fill="#B4B3B3" width="20" height="20">
+                  <path
+                    d="M9,7.5c0-.83,.67-1.5,1.5-1.5s1.5,.67,1.5,1.5-.67,1.5-1.5,1.5-1.5-.67-1.5-1.5Zm15-.5v6c0,2.76-2.24,5-5,5H10c-2.76,0-5-2.24-5-5V7c0-2.76,2.24-5,5-5h9c2.76,0,5,2.24,5,5ZM7,13c0,.77,.29,1.47,.77,2.01l5.24-5.24c.98-.98,2.69-.98,3.67,0l1.04,1.04c.23,.23,.62,.23,.85,0l3.43-3.43v-.38c0-1.65-1.35-3-3-3H10c-1.65,0-3,1.35-3,3v6Zm15,0v-2.79l-2.02,2.02c-.98,.98-2.69,.98-3.67,0l-1.04-1.04c-.23-.23-.61-.23-.85,0l-4.79,4.79c.12,.02,.24,.02,.37,.02h9c1.65,0,3-1.35,3-3Zm-5,7H5c-1.65,0-3-1.35-3-3v-6c0-.74,.27-1.45,.77-2,.37-.41,.33-1.04-.08-1.41-.41-.37-1.04-.33-1.41,.08-.82,.92-1.28,2.1-1.28,3.34v6c0,2.76,2.24,5,5,5h12c.55,0,1-.45,1-1s-.45-1-1-1Z" />
+                </svg>
+              </div>
+
+
+              <div class="overlay" id="overlay">
+                <div class="overlay-text">
+                  <span>X</span>
+                </div>
+              </div>
+
+              <div class="loadedImage" id="loadedImage" onclick="loadImage()">
+
+                <input type="file" id="uploadInput" accept="image/*" style="display: none;">
+
+              </div>
+            </div>
+          </div>
+          <div class="send">
+            <div class="filter">
+              <div class="container">
+                <div class="email" onclick="this.classList.add('expand')">
+                  <div class="from">
+                    <div class="from-contents">
+                      <?xml version="1.0" encoding="UTF-8"?>
+                      <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24"
+                        width="25" height="25" class="svg">
+                        <path
+                          d="M24,3c0,.55-.45,1-1,1H1c-.55,0-1-.45-1-1s.45-1,1-1H23c.55,0,1,.45,1,1ZM15,20h-6c-.55,0-1,.45-1,1s.45,1,1,1h6c.55,0,1-.45,1-1s-.45-1-1-1Zm4-9H5c-.55,0-1,.45-1,1s.45,1,1,1h14c.55,0,1-.45,1-1s-.45-1-1-1Z" />
+                      </svg>
+
+                    </div>
+                  </div>
+                  <div class="to">
+                    <div class="to-contents">
+                      <div class="top">
+                        <div class="name-large">Filtro</div>
+                        <div class="x-touch"
+                          onclick="document.querySelector('.email').classList.remove('expand');event.stopPropagation();">
+                          <div class="x">
+                            <div class="line1"></div>
+                            <div class="line2"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="bottom">
+                        <div class="row">
+                          <div class="link" onclick="location.reload()"><a>Todos</a></div>
+                        </div>
+                        <div class="row">
+                          <div class="link" onclick="getComunicated()"><a>Comunicado</a></div>
+                        </div>
+                        <div class="row">
+                          <div class="link" onclick="getUndertaking()"><a>Empreendimento</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button onclick="sendPost()">Postar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="feed" id="feed">
+        <div id="nothingHere" style="display: flex">
+          <span>Não há nada por aqui</span>
+        </div>
+        <div id="content-feed" class="content-feed" style="display: flex"></div>
+        <div class="copyright" id="copyright">
+          <text>©️ Incorp LTDA.</text>
+        </div>
+      </div>
+      
+
+    </div>
+</body>
+<script src="../js/posts.js" defer></script>

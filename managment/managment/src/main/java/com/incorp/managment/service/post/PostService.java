@@ -14,10 +14,6 @@ public class PostService {
     private PostRepository postRepository;
     
     public ResponseEntity<Void> delete(String idStr){
-        String[] fileNameParts = idStr.split("_");
-        String idDivisor = fileNameParts[0] + "_" + fileNameParts[1];
-
-       idStr = fileNameParts[1].replaceAll("[^\\d]", ""); // Remove caracteres não numéricos
         final long id = Long.parseLong(idStr);
 
         if (postRepository.existsById(id)) {

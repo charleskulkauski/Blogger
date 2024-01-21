@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.OK;
+
 @RestController
 @RequestMapping("/api/post")
 public class PostController {
@@ -61,10 +63,10 @@ public class PostController {
         return ResponseEntity.status(200).build();
     }
 
-    @DeleteMapping
-    public ResponseEntity deletePostById(@RequestBody String idStr){
+    @DeleteMapping("/{idStr}")
+    public ResponseEntity deletePostById(@PathVariable String idStr){
         postService.delete(idStr);
 
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(OK).build();
     }
 }

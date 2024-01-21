@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="shortcut icon" type="imagex/png" href="../assets/logo/tab_bar.png">
+    <script src="./js/index.js"></script>
+    <title>Incorp.</title>
+</head>
+
+<body id="body">
+    <nav>
+        <div class="content-nav" id="content-nav">
+            
+            <a href="http://localhost:3333/index.html">
+                <div class="logo">
+                    <text>INCORP LTDA.</text>
+                </div>
+            </a>
+            <div class="options">
+                <a href="http://localhost:3333/index.html">
+                    <span>
+                        Inicio
+                    </span>
+                </a>
+                
+                <a href="http://localhost:3333/blog.html">
+                    <span>
+                        Blog Incorp
+                    </span>
+                </a>
+
+
+                <a href="http://localhost:3333/signIn.html">
+                    <span>
+                        Entrar
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content-feed">
+        <div class="inner-feed">
+            <div class="header">
+                <div class="filter">
+                    <div class="filter">
+                        <div class="container">
+                            <div class="email" onclick="this.classList.add('expand')">
+                                <div class="from">
+                                    <div class="from-contents">
+                                        <?xml version="1.0" encoding="UTF-8"?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
+                                            viewBox="0 0 24 24" width="25" height="25" fill="#fff">
+                                            <path
+                                                d="M24,3c0,.55-.45,1-1,1H1c-.55,0-1-.45-1-1s.45-1,1-1H23c.55,0,1,.45,1,1ZM15,20h-6c-.55,0-1,.45-1,1s.45,1,1,1h6c.55,0,1-.45,1-1s-.45-1-1-1Zm4-9H5c-.55,0-1,.45-1,1s.45,1,1,1h14c.55,0,1-.45,1-1s-.45-1-1-1Z" />
+                                        </svg>
+
+                                    </div>
+                                </div>
+                                <div class="to">
+                                    <div class="to-contents">
+                                      <div class="top">
+                                        <div class="name-large">Filtro</div>
+                                        <div class="x-touch"
+                                          onclick="document.querySelector('.email').classList.remove('expand');event.stopPropagation();">
+                                          <div class="x">
+                                            <div class="line1"></div>
+                                            <div class="line2"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="bottom">
+                                        <div class="row">
+                                          <div class="link" onclick="location.reload()"><a>Todos</a></div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="link" onclick="getComunicated()"><a>Comunicado</a></div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="link" onclick="getUndertaking()"><a>Empreendimento</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feed-content" id="feed-content">
+                <div id="nothingHere">
+                    <span>Nada por aqui</span>
+                </div>
+                <div id="content-feed" class="content-feed" style="display: flex"></div>
+                <div class="copyright" id="copyright">  
+                    <text>©️ Incorp LTDA.</text>   
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../js/blog.js"></script>

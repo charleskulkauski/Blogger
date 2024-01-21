@@ -18,14 +18,12 @@ public class AutenticacaoService implements UserDetailsService {
     @Autowired
     private AdminRepository adminRepository;
 
-    // Método da interface implementada
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Optional<Admin> adminOpt = adminRepository.findByEmail(username);
 
         if (adminOpt.isEmpty()) {
-
             throw new UsernameNotFoundException(String.format("usuario: %s nao encontrado", username));
         }
 

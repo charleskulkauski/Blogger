@@ -40,7 +40,6 @@ public class AdminController {
     @PostMapping("/login")
     public ResponseEntity<AdminTokenDto> login(@RequestBody AdminLoginDto adminLoginDto) {
         AdminTokenDto adminTokenDto = this.adminService.autenticar(adminLoginDto);
-
         return ResponseEntity.status(200).body(adminTokenDto);
     }
 }

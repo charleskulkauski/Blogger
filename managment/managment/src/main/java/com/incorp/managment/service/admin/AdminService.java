@@ -33,8 +33,9 @@ public class AdminService {
 
 
     public void criar(CriarAdminDto criarAdminDto){
-
+        System.out.println("criar admindto recebido: " + criarAdminDto.toString());
         final Admin novoAdmin = AdminMapper.of(criarAdminDto);
+
 
         String senhaCriptografada = passwordEncoder.encode(novoAdmin.getPassword());
         novoAdmin.setPassword(senhaCriptografada);
@@ -46,7 +47,6 @@ public class AdminService {
 
         final UsernamePasswordAuthenticationToken credentials = new UsernamePasswordAuthenticationToken(
                 adminLoginDto.getEmail(), adminLoginDto.getSenha());
-
         final Authentication authentication = this.authenticationManager.authenticate(credentials);
 
         Admin adminAutenticado =

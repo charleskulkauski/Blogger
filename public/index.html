@@ -1,109 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" type="imagex/png" href="../assets/logo/tab_bar.png">
+    <script src="./js/index.js"></script>
+    <title>Incorp.</title>
 </head>
+
 <body>
     <nav>
-        <div class="content-nav">
-            <div class="logo">
-                <img src="./assets/logo/Grande.png" alt="">
-            </div>
+        <div class="content-nav" id="content-nav">
+            <a href="http://localhost:3333/index.html">
+                <div class="logo">
+                    <text>INCORP LTDA.</text>
+                </div>
+            </a>
             <div class="options">
-                <span>
-                    Empreendimentos
-                </span>
-                <span>
-                    Quem somos
-                </span>
-                <span>
-                    Contato
-                </span>
+                <a href="http://localhost:3333/index.html">
+                    <span>
+                        Inicio
+                    </span>
+                </a>
+                
+                <a href="http://localhost:3333/blog.html">
+                    <span>
+                        Blog Incorp
+                    </span>
+                </a>
+
+
+                <a href="http://localhost:3333/signIn.html">
+                    <span>
+                        Entrar
+                    </span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <div class="content">
+    <div class="content" id="content">
         <div class="information">
             <div class="text">
                 <span class="title">
-                    <b>Primeiro passo para construção</b>
+                    <b>Venha compartilhar aprender</b>
                 </span>
                 <span class="description">
-                    Convidamos você para entrar numa nova interação dinamista e arquitetônica, moderna, e futurista.
+                    Convidamos você para entrar numa nova interação dinamista e arquitetônica, moderna, e futurista de imóveis e empreendimentos.
                 </span>
             </div>
-            <div class="contact-us">
-                <button>
-                    Fale conosco
-                </button>
-            </div>
+            <a href="http://localhost:3333/signUp.html">
+                <div class="contact-us">
+                    <button id="contact">
+                        Cadastre-se aqui
+                    </button>
+                </div>
+            </a>
         </div>
 
         <div class="img-desktop">
-            <img src="../public/assets/content/desktop.png" alt="Desktop site">
+            <img src="../assets/content/desktop.png" alt="Desktop site">
         </div>
 
-        
+
     </div>
 
     <!--EMPREENDIMENTOS-->
-    <div class="content-undertaking">
-
-            <span class="title">Empreendimentos</span>
-            <div class="social-media">
-                <img src="" alt="">
-                <img src="" alt="">
+    <div class="undertaking" id="undertaking">
+        <div class="content-undertaking">
+            <div class="box-title">
+                <span class="title">Empreendimentos</span>
+                <div class="social-blog">
+                    <a href="http://localhost:3333/blog.html">
+                      Ver mais...
+                    </a>
+                </div>
             </div>
 
-            <swiper-container 
-                slides-per-view="3" 
-                grid-column="2" 
-                loop="true" 
-                grab-cursor="true"
-                space-between="50%"
-            >
-                <swiper-slide>
-                    <div class="img-house">
-                        <img src="../public/assets/undertakings/Rectangle 9-1.png" >
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="img-house">
-                        <img src="../public/assets/undertakings/Rectangle 9-1.png" >
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="img-house">
-                        <img src="../public/assets/undertakings/Rectangle 9-1.png" >
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="img-house">
-                        <img src="../public/assets/undertakings/Rectangle 9-1.png" >
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="img-house">
-                        <img src="../public/assets/undertakings/Rectangle 9-1.png" >
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="img-house">
-                        <img src="../public/assets/undertakings/Rectangle 9-1.png" >
-                    </div>
-                </swiper-slide>
+            <div class="achievement">
+                <div class="small-box" id="small-box" onclick="redirectToBlog()">
+                    <div class="box-1" id="box-1"></div>
+                    <div class="box-2" id="box-2"></div>                    
+                </div>
+                <div class="big-box" id="big-box" onclick="redirectToBlog()">
+                    
+                </div>
 
-            </swiper-container>
+            </div>
         </div>
- 
-    
-</body>
-<footer></footer>
-</html>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js">
+    </div>
 
-</script>
+    <!--Quem somos-->
+    <div class="about-us" id="about-us">
+        <div class="content-about-us">
+            <div class="bg-about-us">
+                <img src="../assets/background-about-us/bg-about-us.png" alt="">
+            </div>
+            <div class="information-about-us">
+                <div class="text">
+                    <span class="title">
+                        <b>Quem somos</b>
+                    </span>
+                    <span class="description-about-us">
+                        Empresa com compromisso sério na atração de incorporação de imóveis, venha aprender e compartilhar
+                        sobre empreendimentos e ficar por dentro do mercado.
+                        Ajudamos você a incorporar, divulgar e ajudar no seu empreendimento.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Contato-->
+        <div class="contact" id="contact-us">
+            <span class="title">
+                <b>Contato</b>
+            </span>
+            <div class="contact-content">
+                <div class="input-contact">
+                    <div class="name-last-name">
+                        <input type="text" placeholder="Nome" id="name">
+                        <input type="text" placeholder="Sobrenome" id="lastName">
+                    </div>
+                    <div class="email">
+                        <input type="text" placeholder="Email" id="email">
+                    </div>
+                    <div class="message">
+                        <textarea type="text" placeholder="Digite uma mensagem" id="message"></textarea>
+                    </div>
+                    <div class="options-contact">
+                        <div class="send-button">
+                            <button onclick="send()">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <hr class="line"/>
+            <div class="copyright">
+                 <span>
+                        ©️ Incorp LTDA.
+                    </span>
+            </div>    
+        </footer>
+</body>
+</html>
