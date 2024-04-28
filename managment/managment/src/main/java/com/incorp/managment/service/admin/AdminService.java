@@ -33,8 +33,6 @@ public class AdminService {
 
 
     public Admin criar(CriarAdminDto criarAdminDto){
-            System.out.println("criar admindto recebido: " + criarAdminDto.toString());
-
             final Admin novoAdmin = AdminMapper.of(criarAdminDto);
             String senhaCriptografada = passwordEncoder.encode(novoAdmin.getPassword());
             novoAdmin.setPassword(senhaCriptografada);
@@ -58,7 +56,7 @@ public class AdminService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         final String token = gerenciadorTokenJwt.generateToken(authentication);
-        System.out.println(token.toString());
+        System.out.println("Token JWT: " + token.toString());
         return AdminMapper.of(adminAutenticado, token);
     }
 }

@@ -53,9 +53,6 @@ public class AdminController {
         response.setIdAdmin(admin.getIdAdmin());
         response.setNameAdmin(admin.getName());
 
-        System.out.println(response);
-
-
         return ResponseEntity.ok(response);
     }
 }
