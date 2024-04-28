@@ -20,6 +20,33 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.onload = function loadPage() {
+  if (sessionStorage.getItem("login") == "true") {
+    var optionsLoginTrue = `<a href="http://localhost:3333/index.html">
+    <span>
+        Inicio
+    </span>
+</a>
+
+<a href="http://localhost:3333/blog.html">
+    <span>
+        Blog Incorp
+    </span>
+</a>
+
+
+<a href="http://localhost:3333/posts.html" id="link-entrar">
+    <span id="entrar">
+        Meus posts
+    </span>
+</a>`;
+
+    document.getElementById("options").innerHTML = "";
+    document.getElementById("options").innerHTML = optionsLoginTrue;
+
+
+
+    document.getElementById("link-cadastro").innerHTML = "";
+  }
 
   fetch('http://localhost:8080/api/post/last', {
     method: "GET",
@@ -33,36 +60,36 @@ window.onload = function loadPage() {
     })
     .then(data => {
       posts = data;
-
+      console.log(posts);
       if (!(posts.length == 0 || posts == undefined)) {
-        for (var i = 0; i <= posts.length; i++) {
-          makePost(posts[i].category, posts[i].title, posts[i].text, posts[i].date, posts[i].category, posts[i].blob);
+        for (var i = 0; i < posts.length; i++) {
+          makePost(posts[i].category, posts[i].title, posts[i].text, posts[i].date, posts[i].blob, posts[i].nameAdmin,);
         }
       }
     })
     .catch(error => {
-      console.error('Erro ao enviar dados para a API:', error);
+      console.error('Erro ao consumir dados para a API:', error);
     });
 
 }
 
-function makePost(categorySelected, titleInput, text_postInput, dateNow, categorySelected, blob) {
+function makePost(categorySelected, titleInput, text_postInput, dateNow, blob, authorName) {
 
   titleInput = titleInput.charAt(0).toUpperCase() + titleInput.slice(1);
 
-  var text_format = "";
+  let text_format = "";
   if (text_postInput.length > 100) {
     for (i = 0; i < 70; i++) {
       text_format += text_postInput.charAt(i);
-      
-    }
 
+    }
     text_format = text_format += `...`
-  }else{
+  } else {
     text_format = text_postInput;
   }
 
-  
+  console.log('TEXT FORMAT: ' + text_format);
+
   if (categorySelected == "Comunicado") {
     var newPostHtml = `
         <div class="post">
@@ -71,14 +98,23 @@ function makePost(categorySelected, titleInput, text_postInput, dateNow, categor
                     <span class="title-post">${titleInput}</span>
                 </div>
                 <div class="post-text">${text_format}</div>
-                    <div class="inform-category">
-                                <div class="date">
-                                    <span>${dateNow}</span>
-                                </div>
-                                <div class="category-selected">
-                                    <span>${categorySelected}</span>
-                                </div>
-                    </div>
+
+
+                <div class="info-post">
+                  <div class="inform-category">
+                      <div class="date">
+                          <span>${dateNow}</span>
+                      </div>
+                      <div class="category-selected">
+                          <span>${categorySelected}</span>
+                      </div>
+                  </div>
+
+                  <div class="author-name">
+                      <span>${authorName}</span>
+                  </div>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -92,7 +128,7 @@ function makePost(categorySelected, titleInput, text_postInput, dateNow, categor
       valueBox = 1;
     }
 
-  } else if (categorySelected == "Empreendimento") {
+  } else if (categorySelected == "Imagem") {
     var img = document.createElement('img');
     img.src = "data:image/png;base64," + blob;
 
@@ -109,31 +145,39 @@ function makePost(categorySelected, titleInput, text_postInput, dateNow, categor
                           <img src="${blob}">
                       </div>
                       <div class="post-text">${text_format}</div>
-                          <div class="inform-category">
-                                      <div class="date">
-                                          <span>${dateNow}</span>
-                                      </div>
-                                      <div class="category-selected">
-                                          <span>${categorySelected}</span>
-                                      </div>
+                      <div class="info-post">
+                      <div class="inform-category">
+                          <div class="date">
+                              <span>${dateNow}</span>
                           </div>
+                          <div class="category-selected">
+                              <span>${categorySelected}</span>
+                          </div>
+                      </div>
+    
+                      <div class="author-name">
+                          <span>${authorName}</span>
+                      </div>
+                    </div>
                       </div>
                   </div>
               </div>
               `
 
+    box = document.getElementById(`box-${valueBox}`);
+    box.innerHTML = newPostHtml;
 
-    var bigbox;
+    valueBox++;
+    if (valueBox > 2) {
+      valueBox = 1;
+    }
 
-    bigbox = document.getElementById("big-box");
-
-    bigbox.innerHTML = newPostHtml;
   }
 
 }
 
-function redirectToBlog(){
-  window.location.href="http://localhost:3333/blog.html"
+function redirectToBlog() {
+  window.location.href = "http://localhost:3333/blog.html"
 }
 
 function send() {
@@ -169,6 +213,7 @@ function send() {
     })
       .then(result => {
         alert("Dados enviados com sucesso!");
+        location.reload();
       })
       .catch(error => {
         console.error('Erro ao enviar dados para a API:', error);

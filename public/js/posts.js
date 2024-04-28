@@ -13,20 +13,35 @@ var postIndex = 0; //Receber do token aqui ouuu enviar pro banco
 var blobData;
 var imgElement;
 
-
-var idPost = 0;
 var filter = false;
 
-
+const idAdmin = sessionStorage.getItem("idAdmin");
 var posts = [];
 
+let qtdPost = 0;
+
 window.onload = function loadPage() {
-    if (sessionStorage.getItem("login") !== "true") {
-        alert('Efetuar login!');
-        window.location.href = "../index.html";
+    //if (sessionStorage.getItem("login") !== "true") {
+      //  alert('Efetuar login!');
+        //window.location.href = "../index.html";
+    //}
+
+    if(qtdPost==0){
+        const welcomeMessage = `<span>Faça sua primeira postagem!</span>`;
+        const divId = document.getElementById("nothingHere");
+
+        divId.innerHTML= "";
+        divId.innerHTML= welcomeMessage;
+        
+    }else{
+        const welcomeMessage = `<span>Carregando...</span>`;
+        const divId = document.getElementById("nothingHere");
+
+        divId.innerHTML= "";
+        divId.innerHTML= welcomeMessage;
     }
 
-    fetch('http://localhost:8080/api/post', {
+    fetch(`http://localhost:8080/api/post/${idAdmin}`, {
         method: "GET",
         headers: {
             Accept: 'application/json',
@@ -38,8 +53,6 @@ window.onload = function loadPage() {
             if (data && data.length > 0) {
                 posts = data;
 
-                idPost = posts[posts.length - 1].id
-
                 let listStructurePosts = [];
                 for (var i = 0; i < posts.length; i++) {
                     var post = {
@@ -49,9 +62,10 @@ window.onload = function loadPage() {
                         text: posts[i].text,
                         date: posts[i].date,
                         blob: posts[i].blob,
+                        authorName: posts[i].nameAdmin,
                     };
 
-                    listStructurePosts.push(makePost(post.id, post.category, post.title, post.text, post.date, post.blob));
+                    listStructurePosts.push(makePost(post.id, post.category, post.title, post.text, post.date, post.blob, post.authorName));
                 }
 
                 document.getElementById("nothingHere").style.display = "none";
@@ -156,13 +170,15 @@ function sendPost() {
     var titleInput = document.getElementById("title_input").value;
     var text_postInput = document.getElementById("text_post_input").value;
 
+    qtdPost++;
+
     titleInput = titleInput.charAt(0).toUpperCase() + titleInput.slice(1);
     if (titleInput == '' || text_postInput == '') {
         alert('Por favor preencha todos os campos!')
     } else {
-        //Category
+
         function category() {
-            if (comunicatedMark) { return "Comunicado" } else if (undertakingMark) { return "Empreendimento" } else { return undefined }
+            if (comunicatedMark) { return "Comunicado" } else if (undertakingMark) { return "Imagem" } else { return undefined }
         }
 
         var categorySelected = category();
@@ -172,21 +188,25 @@ function sendPost() {
         var nameMonth = funcDate.toLocaleString("pt-BR", { month: "long" })
         var dateNow = ` ${funcDate.getDate()} de ${nameMonth.charAt(0).toUpperCase() + nameMonth.slice(1)} `;
 
-        var idPost = idPost + 1;
+        const emailAdminStorage = sessionStorage.getItem("email");
+        const nameAdminStorage = sessionStorage.getItem("name");
+
+        var blobEmpty = "#";
 
         switch (categorySelected) {
             case ("Comunicado"):
 
                 const dataComunicated = {
-                    id: idPost,
                     title: titleInput,
                     text: text_postInput,
                     date: dateNow,
                     category: categorySelected,
-
+                    blob : blobEmpty,
+                    emailAdmin: emailAdminStorage,
+                    nameAdmin: nameAdminStorage,
                 };
 
-                fetch('http://localhost:8080/api/post', {
+                fetch(`http://localhost:8080/api/post`, {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
@@ -194,33 +214,58 @@ function sendPost() {
                     body: JSON.stringify(dataComunicated)
                 })
                     .then(result => {
-                        alert("Dados enviados com sucesso!");
+                        var image = "#";
+
+                        return result.json();
+                    })
+
+                    .then(data =>{
+
+                        if(data && data.length > 0){
+                            const jsonPost = {
+                                id: result.id,
+                                title: titleInput,
+                                text: text_postInput,
+                                date: dateNow,
+                                category: categorySelected,
+                                blob : blobEmpty,
+                                emailAdmin: emailAdminStorage,
+                                nameAdmin: nameAdminStorage,
+                            };
+    
+                            console.log('POST RETORNADO: ', jsonPost);
+    
+                            makePost(jsonPost.id, jsonPost.category, jsonPost.title, jsonPost.text, jsonPost.date, jsonPost.blob, jsonPost.nameAdmin);
+    
+                            alert('Dados enviados com sucesso!');
+
+                        }
+
                     })
                     .catch(error => {
-                        console.error('Erro ao enviar dados para a API:', error);
+                        console.error('Erro ao enviar dados para a API:', error.message);
                     });
 
-                var image = null;
-                location.reload();
-                makePost(idPost, categorySelected, titleInput, text_postInput, dateNow, categorySelected, image);
+                 location.reload();
                 break;
 
-            case ("Empreendimento"):
+            case ("Imagem"):
                 if (blobData == undefined) {
-                    alert('ta vazio a img')
+                    alert('Imagem não pode estar vazia para esta categoria');
                 } else {
 
                     const dataUndertaking = {
-                        id: idPost,
                         title: titleInput,
                         text: text_postInput,
                         date: dateNow,
                         category: categorySelected,
-                        blob: blobData
-
+                        blob: blobData,                        
+                        emailAdmin: emailAdminStorage,
+                        nameAdmin: nameAdminStorage,
                     };
 
-                    fetch('http://localhost:8080/api/post', {
+
+                    fetch(`http://localhost:8080/api/post`, {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json',
@@ -228,16 +273,40 @@ function sendPost() {
                         body: JSON.stringify(dataUndertaking)
                     })
                         .then(result => {
-                            alert("Dados enviados com sucesso!");
+                            var image = "#";
+    
+                            return result.json();
+                        })
+    
+                        .then(data =>{
+    
+                            if(data && data.length > 0){
+                                const jsonPost = {
+                                    id: result.id,
+                                    title: titleInput,
+                                    text: text_postInput,
+                                    date: dateNow,
+                                    category: categorySelected,
+                                    blob : blobEmpty,
+                                    emailAdmin: emailAdminStorage,
+                                    nameAdmin: nameAdminStorage,
+                                };
+        
+                                console.log('POST RETORNADO: ', jsonPost);
+        
+                                makePost(jsonPost.id, jsonPost.category, jsonPost.title, jsonPost.text, jsonPost.date, jsonPost.blob, jsonPost.nameAdmin);
+        
+                                alert('Dados enviados com sucesso!');
+    
+                            }
+    
                         })
                         .catch(error => {
                             console.error('Erro ao enviar dados para a API:', error);
                         });
 
-                    makePost(idPost, categorySelected, titleInput, text_postInput, dateNow, categorySelected, blobData);
                     location.reload();
                     break;
-
                 }
 
             default:
@@ -250,7 +319,6 @@ function sendPost() {
     }
 }
 
-
 function loadImage() {
 
     const loadedImage = document.getElementById("loadedImage");
@@ -260,8 +328,6 @@ function loadImage() {
         loadedImage.style.display = "none"
         iconImage.style.visibility = "visible"
         uploadInput.value = null;
-
-
         imageExists = false;
 
     } else if (imageExists == false) {
@@ -306,7 +372,7 @@ function loadImage() {
 function makePost(idPost, categorySelected, titleInput, text_postInput, dateNow, blob) {
     var imgHtml = "";
 
-    if (categorySelected === "Empreendimento" && blob) {
+    if (categorySelected === "Imagem" && blob) {
         imgHtml = `<div class="post-img"><img src="${blob}"></div>`;
     }
 
@@ -340,11 +406,12 @@ function makePost(idPost, categorySelected, titleInput, text_postInput, dateNow,
         </div>
     `;
 
+    qtdPost++;
     return newPostHtml;
 }
 
 function getComunicated() {
-    fetch('http://localhost:8080/api/post/Comunicado', {
+    fetch(`http://localhost:8080/api/post/${idAdmin}/Comunicado`, {
         method: "GET",
         headers: {
             Accept: 'application/json',
@@ -368,11 +435,11 @@ function getComunicated() {
                             title: posts[i].title,
                             text: posts[i].text,
                             date: posts[i].date,
+                            authorName: posts[i].nameAdmin,
                         };
 
-                        listStructurePostsComunicated.push(makePost(post.id, post.category, post.title, post.text, post.date));
+                        listStructurePostsComunicated.push(makePost(post.id, post.category, post.title, post.text, post.date, post.authorName));
                     }
-
                 }
 
                 document.getElementById('content-feed').innerHTML = "";
@@ -391,7 +458,7 @@ function getComunicated() {
 }
 
 function getUndertaking() {
-    fetch('http://localhost:8080/api/post/Empreendimento', {
+    fetch(`http://localhost:8080/api/post/${idAdmin}/Imagem`, {
         method: "GET",
         headers: {
             Accept: 'application/json',
@@ -407,7 +474,7 @@ function getUndertaking() {
 
             if (!(posts.length == 0 || posts == undefined)) {
                 for (var i = 0; i < posts.length; i++) {
-                    if (posts[i].category == 'Empreendimento') {
+                    if (posts[i].category == 'Imagem') {
                         var post = {
                             id: posts[i].id,
                             blob: posts[i].blob,
@@ -415,9 +482,10 @@ function getUndertaking() {
                             title: posts[i].title,
                             text: posts[i].text,
                             date: posts[i].date,
+                            authorName: posts[i].nameAdmin,
                         };
 
-                        listStructurePostsComunicated.push(makePost(post.id, post.category, post.title, post.text, post.date, post.blob));
+                        listStructurePostsComunicated.push(makePost(post.id, post.category, post.title, post.text, post.date, post.blob, post.authorName));
                     }
                 }
 
@@ -437,7 +505,6 @@ function getUndertaking() {
 }
 
 function deletePost(element) {
-
     var postId = element.getAttribute("data-post-id");
 
     fetch(`http://localhost:8080/api/post/${postId}`, {
@@ -463,6 +530,8 @@ function deletePost(element) {
 
 function signOut() {
     sessionStorage.setItem("login", false);
+    sessionStorage.removeItem("idAdmin");
+    sessionStorage.removeItem("email");
     window.location.href = "http://localhost:3333/index.html";
 }
 

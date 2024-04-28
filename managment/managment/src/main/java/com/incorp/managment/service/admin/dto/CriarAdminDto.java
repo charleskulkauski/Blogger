@@ -9,7 +9,7 @@ import lombok.Setter;
 @Data
 public class CriarAdminDto {
 
-    @Size(min = 3, max = 10)
+    @Size(min = 3, max = 40)
     private String nome;
 
     @Email

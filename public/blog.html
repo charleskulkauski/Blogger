@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/blog.css">
     <link rel="shortcut icon" type="imagex/png" href="../assets/logo/tab_bar.png">
+
     <script src="./js/index.js"></script>
-    <title>Incorp.</title>
+    <script src="../js/blog.js"></script>
+    <title>Blogger</title>
 </head>
 
 <body id="body">
     <nav>
         <div class="content-nav" id="content-nav">
-            
             <a href="http://localhost:3333/index.html">
                 <div class="logo">
-                    <text>INCORP LTDA.</text>
+                    <text>Blogger</text>
                 </div>
             </a>
-            <div class="options">
+            <div class="options" id="options">
                 <a href="http://localhost:3333/index.html">
                     <span>
                         Inicio
@@ -28,20 +29,20 @@
                 
                 <a href="http://localhost:3333/blog.html">
                     <span>
-                        Blog Incorp
+                        Blogger
                     </span>
                 </a>
 
 
-                <a href="http://localhost:3333/signIn.html">
-                    <span>
+                <a href="http://localhost:3333/signIn.html" id="link-entrar">
+                    <span id="entrar">
                         Entrar
                     </span>
                 </a>
             </div>
         </div>
     </nav>
-
+    <div class="box-nav"><div><span>.</span></div></div>
     <div class="content-feed">
         <div class="inner-feed">
             <div class="header">
@@ -80,7 +81,7 @@
                                           <div class="link" onclick="getComunicated()"><a>Comunicado</a></div>
                                         </div>
                                         <div class="row">
-                                          <div class="link" onclick="getUndertaking()"><a>Empreendimento</a></div>
+                                          <div class="link" onclick="getUndertaking()"><a>Imagens</a></div>
                                         </div>
                                       </div>
                                     </div>
@@ -96,7 +97,7 @@
                 </div>
                 <div id="content-feed" class="content-feed" style="display: flex"></div>
                 <div class="copyright" id="copyright">  
-                    <text>©️ Incorp LTDA.</text>   
+                    <text>©️ Blogger</text>   
                 </div>
             </div>
         </div>
@@ -104,4 +105,3 @@
 </body>
 
 </html>
-<script src="../js/blog.js"></script>

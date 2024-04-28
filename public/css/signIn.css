@@ -40,7 +40,7 @@ nav{
 }
 
 .nav-white-text a{
-    color: black;
+    color: white;
 }
 
 .logo{
@@ -58,23 +58,25 @@ nav{
 
 a{
     text-decoration: none;
-    color: #fff;
+    color: #F5F5F5;
+
+    transition: transform .7s, filter 1.5s ease-in-out;
 }
 
 a:hover{
-    transform: translateY(-3px);
+    transform: scale(1.04);
 }
 
 a:active{
     transform: translateY(-1px);
 }
+
 .options{
     width: 30vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
     font-size: 18px;
-    font-weight: 600;
 }
 
 a{

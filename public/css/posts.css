@@ -9,12 +9,12 @@ body{
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
     background: #f5f5f500;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #8A8B8D;
+    background: #47494C;
     border-radius: 5px;
 }
 
@@ -52,11 +52,11 @@ nav{
 }
 
 .logo:hover{
-    transform: translateY(-3px);
+  transform: translateY(-3px);
 }
 
 .logo:active{
-    transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 a{
@@ -74,6 +74,22 @@ a:active{
     transition: 0.5s;
 }
 
+
+.box-navigation{
+  width: 15%;
+  height: 100%;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+.sign-out svg:hover{
+  fill: #ff0000;
+}
+
 .perfil{
     width: 20%;
     height: 80%;
@@ -82,6 +98,10 @@ a:active{
     align-items: center;
     justify-content: flex-end;
     border-radius: 100%;
+}
+
+.sign-out{
+  cursor: pointer;
 }
 
 
@@ -152,7 +172,10 @@ a:active{
       height: 70px;
       transition: height 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
       width: 100%;
+      cursor: pointer;
     }
+
+
   
     .name-large-perfil {
       color: #FF0000;
@@ -170,13 +193,14 @@ a:active{
       margin-left: auto;
       width: 50px;
     }
+
     .x-perfil {
       border-radius: 10px;
       height: 20px;
       position: relative;
       width: 20px;
     }
-  
+
     .line1-perfil {
       background: #ff0000;
       height: 12px;
@@ -230,12 +254,6 @@ a:active{
 
 
 /* Design and Structure by: ainalem */
-
-
-
-
-
-
 
 .photo{
     height: 100%;
@@ -294,9 +312,7 @@ a:active{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
-
-    
+    justify-content: space-around;    
 }
 
 .info{
@@ -312,8 +328,6 @@ a:active{
 .info-signOut{
    color: #FF0000; 
 }
-
-
 
 .posts-content{
     width: 100%;
@@ -345,9 +359,18 @@ a:active{
 
 }
 
+.options{
+  width: 100%;
+  display: flex;
+  
+  justify-content: space-between;
+  flex-direction: row;
+  text-align: center;
+}
+
 .input-text{
     width:100%;
-    height: 75%;
+    height: 50%;
 
     display: flex;
     flex-direction: column;
@@ -366,7 +389,7 @@ a:active{
 
 .text{
     width: 100%;
-    height: 60%;
+    height: 56%;
 
     border: 1px solid #000;
     border-radius: 5px;
@@ -445,13 +468,13 @@ a:active{
     transition: 0.6s;
 }
 
-/* .category button:hover{
+ .category button:hover{
     background-color: #000;
     color:#fff;
     transform: translateY(-2px);
 }
 
-.category button:focus{
+/*.category button:focus{
     transform: translateY(-1px);
     background-color: #000;
     color:#fff;
@@ -461,8 +484,16 @@ a:active{
     background-color: #f5f5f5;
 }
 
+
+
 .undertaking-category{
     background-color: #f5f5f5;
+}
+
+.undertaking-category:hover{
+  background-color: #000;
+  color:#fff;
+  transform: translateY(-2px);
 }
 
 .imageDiv{
@@ -548,7 +579,6 @@ a:active{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
     height: 50%;
 }
    
@@ -772,6 +802,10 @@ hr.line{
     margin: 2px;
 }
 
+#nothingHere{
+  margin: auto;
+}
+
 .content-feed{
   width: 100%;
   display: flex;
@@ -804,7 +838,7 @@ hr.line{
 
 .inner-post{
   width: 100%;
-  height: 85%;
+  height: 90%;
 }
 
 .title{
@@ -835,6 +869,8 @@ hr.line{
 
     display: flex;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .post-text{
