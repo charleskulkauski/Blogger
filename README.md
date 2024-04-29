@@ -16,24 +16,31 @@ O Blogger é uma plataforma web que permite aos usuários criar, compartilhar e 
 
 2. **Instale as Dependências**
   Certifique-se de ter o Java, o Node.js e o npm instalados em sua máquina.
-   ```cd blogger
+   ```
+      cd blogger
       npm install
 
 3. **Execute o Projeto Web:**
-   ```npm start
+   ```
+      npm start
 
 4. **Execute a API**
-   ```cd managment/target
+   ```
+     cd managment/target
      java -jar managment.jar
 
-4. **Acesse o Blogger**
-Abra seu navegador e acesse http://localhost:3333 para começar a usar o Blogger.
+5. **Acesse o Blogger**
+   
+   Abra seu navegador e acesse http://localhost:3333 para começar a usar o Blogger.
+
 
 ## Contribuição
+
 - Sinta-se à vontade para abrir uma issue para relatar bugs, sugestões ou novos recursos.
 - Contribuições através de pull requests são bem-vindas. Por favor, abra um PR explicando suas alterações.
 
-  ## Tecnologias Utilizadas
+## Tecnologias Utilizadas
+
 - JavaScript
 - HTML
 - CSS
@@ -42,9 +49,11 @@ Abra seu navegador e acesse http://localhost:3333 para começar a usar o Blogger
 - H2-Console
      
 ## Ferramentas de Desenvolvimento
+
 - Trello: Para gerenciamento de tarefas.
 - Figma: Para prototipagem e design de interface.
 
 ## Autor
+
 [Charles Kulkauski](https://github.com/charleskulkauski)
 
