@@ -21,10 +21,10 @@ var posts = [];
 let qtdPost = 0;
 
 window.onload = function loadPage() {
-    //if (sessionStorage.getItem("login") !== "true") {
-      //  alert('Efetuar login!');
-        //window.location.href = "../index.html";
-    //}
+    if (sessionStorage.getItem("login") !== "true") {
+        alert('Efetuar login!');
+        window.location.href = "../index.html";
+    }
 
     if(qtdPost==0){
         const welcomeMessage = `<span>Faça sua primeira postagem!</span>`;
